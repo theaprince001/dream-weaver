@@ -31,7 +31,7 @@ export default function App() {
 
     analyzeDream(dreamText)
       .then((data) => setAnalysis(data))
-      .catch((err) => setError("The dreamer is resting. The AI might be temporarily unavailable or out of tokens. Please try again later."))
+      .catch(() => setError("The dreamer is resting. The AI might be temporarily unavailable or out of tokens. Please try again later."))
       .finally(() => setIsAnalyzing(false));
 
     streamSynthesis(
