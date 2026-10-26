@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: dream-weaver-api
+
+  config:
+   import: "optional:file:.env[.properties]"
+  ai:
+    openai:
+      api-key: ${GROQ_API_KEY:missing-key}
+      base-url: https://api.groq.com/openai
+      chat:
+        options:
+          model: openai/gpt-oss-120b
+          temperature: 0.8
+          max-tokens: 4000
+
+server:
+  port: ${PORT:8082}
+  max-http-request-header-size: 16KB
+  tomcat:
+    max-swallow-size: 64KB
+    max-http-form-post-size: 64KB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+app:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
